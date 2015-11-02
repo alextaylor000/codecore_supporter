@@ -1,0 +1,40 @@
+- if @supreq.errors.any?
+  p Oops, your request had errors:
+  ul
+    - @supreq.errors.full_messages.each do |msg|
+      li #{msg}
+
+= form_for @supreq do |f|
+  div class="form-group"
+    = f.label :name
+    = f.text_field :name
+
+  div class="form-group"
+    = f.label :email
+    = f.email_field :email
+
+  div class="form-group"
+    = f.label :department
+
+    = f.label :department, "sales"
+    = f.radio_button :department, "sales"
+
+    = f.label :department, "marketing"
+    = f.radio_button :department, "marketing"
+
+    = f.label :department, "technical"
+    = f.radio_button :department, "technical"
+
+  div class="form-group"
+    = f.text_area :message
+
+  - if @supreq.persisted?
+    div class="form-group"
+      = f.label :done, "done"
+      = f.radio_button :done, "true"
+
+      = f.label :done, "not done"
+      = f.radio_button :done, "false"
+
+  div class="form-group"
+    = f.submit

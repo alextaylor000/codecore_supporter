@@ -1,0 +1,12 @@
+h1 Ticket #{@supreq.id}
+p Status: #{@supreq.toggle_status_display}
+p Name: #{@supreq.name} (#{mail_to @supreq.email})
+p Department: #{@supreq.department}
+p Message: #{@supreq.message}
+ul
+
+  li
+    = link_to "edit", edit_support_request_path(@supreq)
+  li
+    = link_to "delete", delete_support_request_path(@supreq), method: :delete,
+                        data: { confirm: "Really delete this support request?" }

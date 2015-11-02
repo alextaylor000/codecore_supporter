@@ -1,0 +1,31 @@
+h1 Support Requests
+
+h4 Search
+= render "search"
+
+= paginate @supreqs
+
+table
+  tr
+    th Name
+    th Email
+    th Department
+    th Message
+    th Actions
+  - @supreqs.each do |supreq|
+    tr
+      td #{supreq.name}
+      td = mail_to supreq.email
+      td #{supreq.department}
+      td #{supreq.message_short(50)}
+      td
+        = button_to "go", support_request_path(supreq), method: :get
+        = button_to "edit", edit_support_request_path(supreq), method: :get
+        = button_to "delete", delete_support_request_path(supreq), method: :delete,
+                            data: { confirm: "Really delete this request?" }
+        / TODO: refactor this to make it work properly!
+        = form_for supreq do |f|
+          = f.hidden_field :done, value: supreq.toggle_status
+          = f.submit supreq.toggle_status_display
+
+= paginate @supreqs
