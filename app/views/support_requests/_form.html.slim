@@ -37,13 +37,9 @@
   / TODO: this isn't working properly, not hooked up to the form for some reason
   - if @supreq.persisted?
     div class="form-group"
-      = f.label :done, class: "radio-inline"
-        = f.radio_button :done, "true"
-        = "open"
-
-      = f.label :done, class: "radio-inline"
-        = f.radio_button :done, "false"
-        = "closed"
+      = f.label :done, class: "checkbox-inline"
+        = f.check_box :done
+        = "done"
 
   div class="form-group"
     = f.submit "Submit", class: "btn btn-info"
