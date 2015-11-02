@@ -1,5 +1,5 @@
 h1 Ticket #{@supreq.id}
-p Status: #{@supreq.toggle_status_display}
+p Status: #{@supreq.toggle_status_display[:status]}
 p Name: #{@supreq.name} (#{mail_to @supreq.email})
 p Department: #{@supreq.department}
 p Message: #{@supreq.message}

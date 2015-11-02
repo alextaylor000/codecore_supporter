@@ -7,34 +7,43 @@
 = form_for @supreq do |f|
   div class="form-group"
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: "form-control"
 
   div class="form-group"
     = f.label :email
-    = f.email_field :email
+    = f.email_field :email, class: "form-control"
 
   div class="form-group"
     = f.label :department
+    br
 
-    = f.label :department, "sales"
-    = f.radio_button :department, "sales"
+    / TODO: refactor so that a user can click on the label
+    = f.label :department, class: "radio-inline"
+      = f.radio_button :department, "sales"
+      = "sales"
 
-    = f.label :department, "marketing"
-    = f.radio_button :department, "marketing"
+    = f.label :department, class: "radio-inline"
+      = f.radio_button :department, "marketing"
+      = "marketing"
 
-    = f.label :department, "technical"
-    = f.radio_button :department, "technical"
+    = f.label :department, class: "radio-inline"
+      = f.radio_button :department, "technical"
+      = "technical"
 
   div class="form-group"
-    = f.text_area :message
+    = f.label :message
+    = f.text_area :message, class: "form-control"
 
+  / TODO: this isn't working properly, not hooked up to the form for some reason
   - if @supreq.persisted?
     div class="form-group"
-      = f.label :done, "done"
-      = f.radio_button :done, "true"
+      = f.label :done, class: "radio-inline"
+        = f.radio_button :done, "true"
+        = "open"
 
-      = f.label :done, "not done"
-      = f.radio_button :done, "false"
+      = f.label :done, class: "radio-inline"
+        = f.radio_button :done, "false"
+        = "closed"
 
   div class="form-group"
-    = f.submit
+    = f.submit "Submit", class: "btn btn-info"

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "support_requests#new"
+  root "support_requests#welcome"
 
   # support requests
   get "/support_requests/new" =>              "support_requests#new",     as: :new_support_request
@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   # support requests - search
   # TODO: I can't use support_requests/search because it will be directed to #show.
   #       is there a better way to do this?
-  get "/support_requests_search" =>           "support_requests#search", as: :search_support_requests
+  get "/support_requests_search" =>           "support_requests#search",  as: :search_support_requests
 
   # support requests - pagination
-  get "/support_requests/page/:page" =>                         "support_requests#index"
+  get "/support_requests/page/:page" =>       "support_requests#index"
 
 end

@@ -1,6 +1,10 @@
 class SupportRequestsController < ApplicationController
   before_action :support_request_by_id, only: [:show, :edit, :update, :toggle_done, :destroy]
 
+  def welcome
+    @supreq = SupportRequest.new
+  end
+
   def new
     @supreq = SupportRequest.new
   end

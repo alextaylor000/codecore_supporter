@@ -1,11 +1,8 @@
 class SupportRequest < ActiveRecord::Base
   include Searchable
+  validates :name, :email, presence: true
 
-  # TODO: multiple validations on one line?
-  validates :name, presence: true
-  validates :email, presence: true
-
-
+  # Returns the result of a fulltext search on name, email and message.
   def self.search_for(query)
     search(query, :name, :email, :message)
   end
@@ -17,7 +14,11 @@ class SupportRequest < ActiveRecord::Base
 
   # Returns the opposite of what the 'done' field is currently set to.
   def toggle_status_display
-    self.done ? "Done" : "Not done"
+    if self.done
+      { status: "closed", style: "danger" }
+    else
+      { status: "open", style: "success" }
+    end
   end
 
   # Returns a truncated version of the message for display on the index page.
